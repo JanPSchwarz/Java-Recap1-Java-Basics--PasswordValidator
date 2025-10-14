@@ -14,6 +14,13 @@ public final class PasswordValidator {
     }
 
     public static boolean hasNoWhiteSpace(String password) {
+        char[] chars = password.toCharArray();
+        for (char c : chars) {
+            if (Character.isWhitespace(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static boolean containsDigit(String password) {
