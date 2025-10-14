@@ -4,8 +4,8 @@ This is a recap project building a small tool to validate a given password. It's
 
 ## Password requirements policy
 
-- min. length: 8
-- min. integer(s): 1
-- min. capital char(s): 1
-- min. non-capital char(s): 1
-- must not be part of a list of weak passwords
+- min. Length: ***8***
+- min. integer(s): ***1***
+- min. capital char(s): ***1***
+- min. non-capital char(s): ***1***
+- ***must not be*** part of a list of ***weak*** passwords
