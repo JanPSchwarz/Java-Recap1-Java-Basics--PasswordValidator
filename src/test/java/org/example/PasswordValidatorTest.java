@@ -24,7 +24,7 @@ class PasswordValidatorTest {
 
     @Test
     void hasMinLength_shouldReturnFalse_withLength7() {
-        String hasLength8 = "password";
+        String hasLength8 = "passwor";
         boolean actual = PasswordValidator.hasMinLength(hasLength8);
         assertFalse(actual);
     }
