@@ -13,7 +13,13 @@ public final class PasswordValidator {
     }
 
     public static boolean containsDigit(String password) {
-        return true;
+        char[] chars = password.toCharArray();
+        for (char c : chars) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static boolean containsUpperAndLower(String password) {
