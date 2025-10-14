@@ -43,7 +43,31 @@ class PasswordValidatorTest {
     }
 
     @Test
-    void containsDigit() {
+    void containsDigit_shouldReturnTrue_forPasswordWithDigit() {
+        String password = "password1";
+        boolean actual = PasswordValidator.containsDigit(password);
+        assertTrue(actual);
+    }
+
+    @Test
+    void containsDigit_shouldReturnFalse_forPasswordWithOutDigit() {
+        String password = "password";
+        boolean actual = PasswordValidator.containsDigit(password);
+        assertFalse(actual);
+    }
+
+    @Test
+    void containsDigit_shouldReturnTrue_forPasswordWitOnlyDigits() {
+        String password = "123789";
+        boolean actual = PasswordValidator.containsDigit(password);
+        assertTrue(actual);
+    }
+
+    @Test
+    void containsDigit_shouldReturnTrue_forPasswordWithManyDigits() {
+        String password = "pw123789";
+        boolean actual = PasswordValidator.containsDigit(password);
+        assertTrue(actual);
     }
 
     @Test
