@@ -43,6 +43,27 @@ class PasswordValidatorTest {
     }
 
     @Test
+    void hasNoWhiteSpace_shouldReturnTrue_withNoWhiteSpace() throws Exception {
+        String hasNoWhiteSpace = "hasNoWhiteSpace";
+        boolean actual = PasswordValidator.hasNoWhiteSpace(hasNoWhiteSpace);
+        assertTrue(actual);
+    }
+
+    @Test
+    void hasNoWhiteSpace_shouldReturnFalse_withWhiteSpace() throws Exception {
+        String hasWhiteSpace = "has white space";
+        boolean actual = PasswordValidator.hasNoWhiteSpace(hasWhiteSpace);
+        assertFalse(actual);
+    }
+
+    @Test
+    void hasNoWhiteSpace_shouldReturnFalse_withWhiteSpaceNewLine() throws Exception {
+        String hasWhiteSpace = "has \nwhite\n space";
+        boolean actual = PasswordValidator.hasNoWhiteSpace(hasWhiteSpace);
+        assertFalse(actual);
+    }
+
+    @Test
     void containsDigit_shouldReturnTrue_forPasswordWithDigit() {
         String password = "password1";
         boolean actual = PasswordValidator.containsDigit(password);

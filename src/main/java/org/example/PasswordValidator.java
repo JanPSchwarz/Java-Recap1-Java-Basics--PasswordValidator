@@ -2,6 +2,7 @@ package org.example;
 
 
 public final class PasswordValidator {
+
     public static void main(String[] args) {
         System.out.println("Hello World!");
     }
@@ -10,6 +11,9 @@ public final class PasswordValidator {
 
     public static boolean hasMinLength(String password) {
         return password != null && password.length() >= 8;
+    }
+
+    public static boolean hasNoWhiteSpace(String password) {
     }
 
     public static boolean containsDigit(String password) {
