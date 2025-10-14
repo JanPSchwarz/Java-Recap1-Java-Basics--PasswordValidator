@@ -9,21 +9,27 @@ public final class PasswordValidator {
     // Methods
 
     public static boolean hasMinLength(String password) {
+        return true;
     }
 
     public static boolean containsDigit(String password) {
+        return true;
     }
 
     public static boolean containsUpperAndLower(String password) {
+        return true;
     }
 
     public static boolean isCommonPassword(String password) {
+        return true;
     }
 
     // Bonus methods
     public static boolean containsSpecialCharacter(String password) {
+        return true;
     }
 
     public static boolean isValid(String password) {
+        return true;
     }
 }
