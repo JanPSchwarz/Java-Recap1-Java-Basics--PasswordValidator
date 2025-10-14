@@ -10,8 +10,8 @@ class PasswordValidatorTest {
 
     @Test
     void hasMinLength_shouldReturnTrue_withLength9() {
-        String hasLength8 = "password1";
-        boolean actual = PasswordValidator.hasMinLength(hasLength8);
+        String hasLength9 = "password1";
+        boolean actual = PasswordValidator.hasMinLength(hasLength9);
         assertTrue(actual);
     }
 
@@ -24,15 +24,21 @@ class PasswordValidatorTest {
 
     @Test
     void hasMinLength_shouldReturnFalse_withLength7() {
-        String hasLength8 = "passwor";
-        boolean actual = PasswordValidator.hasMinLength(hasLength8);
+        String hasLength7 = "passwor";
+        boolean actual = PasswordValidator.hasMinLength(hasLength7);
         assertFalse(actual);
     }
 
     @Test
     void hasMinLength_shouldReturnFalse_withEmptyString() {
-        String hasLength8 = "";
-        boolean actual = PasswordValidator.hasMinLength(hasLength8);
+        String emptyString = "";
+        boolean actual = PasswordValidator.hasMinLength(emptyString);
+        assertFalse(actual);
+    }
+
+    @Test
+    void hasMinLength_shouldReturnFalse_withNull() {
+        boolean actual = PasswordValidator.hasMinLength(null);
         assertFalse(actual);
     }
 

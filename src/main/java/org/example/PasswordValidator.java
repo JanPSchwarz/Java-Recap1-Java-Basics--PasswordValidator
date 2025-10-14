@@ -9,7 +9,7 @@ public final class PasswordValidator {
     // Methods
 
     public static boolean hasMinLength(String password) {
-        return true;
+        return password != null && password.length() >= 8;
     }
 
     public static boolean containsDigit(String password) {
