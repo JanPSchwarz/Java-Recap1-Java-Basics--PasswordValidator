@@ -113,7 +113,31 @@ class PasswordValidatorTest {
     }
 
     @Test
-    void isCommonPassword() {
+    void isCommonPassword_shouldReturnTrue_forCommonPassword_password() {
+        String commonPassword = "password";
+        boolean actual = PasswordValidator.isCommonPassword(commonPassword);
+        assertTrue(actual);
+    }
+
+    @Test
+    void isCommonPassword_shouldReturnTrue_forCommonPassword_12345678() {
+        String commonPassword = "12345678";
+        boolean actual = PasswordValidator.isCommonPassword(commonPassword);
+        assertTrue(actual);
+    }
+
+    @Test
+    void isCommonPassword_shouldReturnTrue_forCommonPassword_aA345678() {
+        String commonPassword = "aA345678";
+        boolean actual = PasswordValidator.isCommonPassword(commonPassword);
+        assertTrue(actual);
+    }
+
+    @Test
+    void isCommonPassword_shouldReturnFalse_strongPassword() {
+        String strongPassword = "aasjhd81$!";
+        boolean actual = PasswordValidator.isCommonPassword(strongPassword);
+        assertFalse(actual);
     }
 
     @Test
