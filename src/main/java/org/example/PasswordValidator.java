@@ -3,6 +3,7 @@ package org.example;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 public final class PasswordValidator {
@@ -61,7 +62,7 @@ public final class PasswordValidator {
 
         final Set<String> commonPasswords = new HashSet<>(Arrays.asList(commonPasswordsArray));
 
-        String normalizedPassword = password.trim().toLowerCase();
+        String normalizedPassword = password.trim().toLowerCase(Locale.ROOT);
 
         return commonPasswords.contains(normalizedPassword);
     }
