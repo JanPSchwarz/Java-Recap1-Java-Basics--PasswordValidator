@@ -51,7 +51,16 @@ public final class PasswordValidator {
     }
 
     public static boolean isCommonPassword(String password) {
-        return true;
+        String[] commonPasswords = {"aa345678", "12345678", "password", "password1"};
+        String normalizedString = password.trim().toLowerCase();
+
+        for (String commonPassword : commonPasswords) {
+            if (normalizedString.equals(commonPassword)) {
+                return true;
+            }
+        }
+        
+        return false;
     }
 
     // Bonus methods
