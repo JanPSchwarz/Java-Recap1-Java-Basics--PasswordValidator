@@ -47,10 +47,14 @@ Lectures.
 
 `Would you like to generate a Password(1) or try our own password(2)? Enter a number:`
 
-`2`
+`1`
 
-`Enter a password:`
+`Enter a Password length (8-20):`
 
-`Strongpssadfjh)!!!`
+`10`
+
+`Looped for 2 iterations!`
+
+`New Password: $h^to6oX*n`
 
 `Password valid!`
