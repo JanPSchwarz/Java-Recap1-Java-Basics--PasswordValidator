@@ -1,10 +1,16 @@
 package org.example;
 
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public final class PasswordValidator {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
+
+        isCommonPassword("test");
     }
 
     // Methods
@@ -51,16 +57,13 @@ public final class PasswordValidator {
     }
 
     public static boolean isCommonPassword(String password) {
-        String[] commonPasswords = {"aa345678", "12345678", "password", "password1"};
-        String normalizedString = password.trim().toLowerCase();
+        String[] commonPasswordsArray = {"aa345678", "12345678", "password", "password1"};
 
-        for (String commonPassword : commonPasswords) {
-            if (normalizedString.equals(commonPassword)) {
-                return true;
-            }
-        }
-        
-        return false;
+        final Set<String> commonPasswords = new HashSet<>(Arrays.asList(commonPasswordsArray));
+
+        String normalizedPassword = password.trim().toLowerCase();
+
+        return commonPasswords.contains(normalizedPassword);
     }
 
     // Bonus methods
