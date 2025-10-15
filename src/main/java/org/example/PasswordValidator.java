@@ -1,14 +1,21 @@
 package org.example;
 
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 
 public final class PasswordValidator {
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Password Validator program\n");
+        System.out.println("Please enter your password: ");
+        String password = scanner.nextLine();
+
+        boolean isValid = isValid(password);
+
+        System.out.println("\nYour password is: " + (isValid ? "Valid" : "Invalid"));
+
+        scanner.close();
     }
 
     // Methods
