@@ -213,4 +213,44 @@ class PasswordValidatorTest {
         boolean actual = PasswordValidator.isValid(password);
         assertTrue(actual);
     }
+
+    @Test
+    void containsSpecialCharacter_shouldReturnTrue_forPasswordWithAllowedSpecialChar() {
+        String password = "Password!";
+        String allowedSpecialChar = "!@#$%^&*()-_+=?.,;:";
+
+        boolean actual = PasswordValidator.containsSpecialCharacter(password, allowedSpecialChar);
+
+        assertTrue(actual);
+    }
+
+    @Test
+    void containsSpecialCharacter_shouldReturnFalse_forPasswordWithOutAllowedSpecialChar() {
+        String password = "Password§";
+        String allowedSpecialChar = "!@#$%^&*()-_+=?.,;:";
+
+        boolean actual = PasswordValidator.containsSpecialCharacter(password, allowedSpecialChar);
+
+        assertFalse(actual);
+    }
+
+    @Test
+    void containsSpecialCharacter_shouldReturnFalse_forPasswordWithOutSpecialChar() {
+        String password = "Password";
+        String allowedSpecialChar = "!@#$%^&*()-_+=?.,;:";
+
+        boolean actual = PasswordValidator.containsSpecialCharacter(password, allowedSpecialChar);
+
+        assertFalse(actual);
+    }
+
+    @Test
+    void containsSpecialCharacter_shouldReturnTrue_forPasswordWithManySpecialChars() {
+        String password = "Password?!()";
+        String allowedSpecialChar = "!@#$%^&*()-_+=?.,;:";
+
+        boolean actual = PasswordValidator.containsSpecialCharacter(password, allowedSpecialChar);
+
+        assertTrue(actual);
+    }
 }
