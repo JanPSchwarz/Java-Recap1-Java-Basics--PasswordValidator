@@ -145,6 +145,72 @@ class PasswordValidatorTest {
     }
 
     @Test
-    void isValid() {
+    void isValid_shouldReturnFalse_forPasswordTooShort() {
+        String password = "passwor";
+        boolean actual = PasswordValidator.isValid(password);
+        assertFalse(actual);
+    }
+
+    @Test
+    void isValid_shouldReturnTrue_forPasswordLengthGood() {
+        String password = "password";
+        boolean actual = PasswordValidator.isValid(password);
+        assertTrue(actual);
+    }
+
+    @Test
+    void isValid_shouldReturnFalse_forPasswordWithWhiteSpace() {
+        String password = "passwor  ";
+        boolean actual = PasswordValidator.isValid(password);
+        assertFalse(actual);
+    }
+
+    @Test
+    void isValid_shouldReturnTrue_forPasswordWithoutWhiteSpace() {
+        String password = "password";
+        boolean actual = PasswordValidator.isValid(password);
+        assertTrue(actual);
+    }
+
+    @Test
+    void isValid_shouldReturnFalse_forPasswordWithoutDigit() {
+        String password = "password";
+        boolean actual = PasswordValidator.isValid(password);
+        assertFalse(actual);
+    }
+
+    @Test
+    void isValid_shouldReturnTrue_forPasswordWithDigit() {
+        String password = "password1";
+        boolean actual = PasswordValidator.isValid(password);
+        assertTrue(actual);
+    }
+
+    @Test
+    void isValid_shouldReturnFalse_forPasswordOnlyLowerCase() {
+        String password = "password12";
+        boolean actual = PasswordValidator.isValid(password);
+        assertFalse(actual);
+    }
+
+    @Test
+    void isValid_shouldReturnTrue_forPasswordWithUpperAndLowerCase() {
+        String password = "PassworD12";
+        boolean actual = PasswordValidator.isValid(password);
+        assertTrue(actual);
+    }
+
+    @Test
+    void isValid_shouldReturnFalse_forCommonPassword() {
+        String password = "Password1";
+        boolean actual = PasswordValidator.isValid(password);
+        assertFalse(actual);
+    }
+
+    @Test
+    void isValid_shouldReturnTrue_forStrongPassword() {
+        String password = "Asdfhkljhdf81!";
+        boolean actual = PasswordValidator.isValid(password);
+        assertTrue(actual);
     }
 }
