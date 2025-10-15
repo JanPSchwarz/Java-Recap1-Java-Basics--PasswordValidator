@@ -16,10 +16,7 @@ public final class PasswordValidator {
 
         while (!hasValidPassword) {
             System.out.println("\nWould you like to generate a Password(1) or try our own password(2)? Enter a number: ");
-            int option = scanner.nextInt();
-
-            // buffer Enter
-            scanner.nextLine();
+            String option = scanner.nextLine();
 
             if ("1".equals(String.valueOf(option))) {
 
@@ -52,6 +49,9 @@ public final class PasswordValidator {
                     hasValidPassword = true;
                 }
 
+            } else {
+                System.out.println("\nPlease enter a valid option!");
+                option = scanner.nextLine();
             }
 
         }
