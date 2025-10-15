@@ -11,28 +11,52 @@ public final class PasswordValidator {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Password Validator program\n");
-        System.out.println("Please enter your password: ");
 
-        String password = scanner.nextLine();
+        boolean hasValidPassword = false;
 
-        boolean isValid = isValid(password);
+        while (!hasValidPassword) {
+            System.out.println("\nWould you like to generate a Password(1) or try our own password(2)? Enter a number: ");
+            int option = scanner.nextInt();
 
-        while (!isValid) {
+            // buffer Enter
+            scanner.nextLine();
 
-            System.out.println("\nYour password is invalid!");
+            if ("1".equals(String.valueOf(option))) {
 
-            System.out.println("\nPassword report:\n");
+                System.out.println("\nEnter a Password length (8-20): ");
 
-            reportValidation(password);
+                int length = scanner.nextInt();
 
-            System.out.print("Please enter another password: ");
+                int normalizedLength = length < 8 ? 8 : Math.min(length, 20);
 
-            password = scanner.nextLine();
+                String newPassword = generateStrongPassword(normalizedLength);
 
-            isValid = isValid(password);
+                System.out.println("\nNew Password: " + newPassword);
+
+                hasValidPassword = true;
+            } else if ("2".equals(String.valueOf(option))) {
+                System.out.println("\nEnter a password: ");
+
+                String password = scanner.nextLine();
+
+                boolean isValid = isValid(password);
+
+                if (!isValid) {
+
+                    System.out.println("\nPassword is invalid!");
+
+                    System.out.println("\nPassword report:\n");
+
+                    reportValidation(password);
+                } else {
+                    hasValidPassword = true;
+                }
+
+            }
+
         }
 
-        System.out.println("Password valid!");
+        System.out.println("\nPassword valid!");
 
         scanner.close();
     }
@@ -136,5 +160,39 @@ public final class PasswordValidator {
     private static void addTableRow(StringBuilder report, String requirement, boolean passed) {
         String status = passed ? "✓ Yes" : "✗ No";
         report.append(String.format("%-40s %s%n", requirement, status));
+    }
+
+    public static String generateStrongPassword(int length) {
+
+
+        String uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String lowercase = "abcdefghijklmnopqrstuvwxyz";
+        String digits = "0123456789";
+
+        String allChars = uppercase + lowercase + digits + ALLOWED_SPECIAL_CHARS;
+
+        boolean isValid = false;
+        String strongPassword = "";
+        int count = 0;
+
+        Random random = new Random();
+
+
+        while (!isValid) {
+            char[] chars = new char[length];
+
+            for (int i = 0; i < length; i++) {
+                int randomInt = random.nextInt(allChars.length());
+                chars[i] = allChars.charAt(randomInt);
+            }
+
+            strongPassword = new String(chars);
+            isValid = isValid(strongPassword);
+            count++;
+        }
+
+        System.out.println("\nLooped for " + count + " iterations!");
+
+        return strongPassword;
     }
 }
