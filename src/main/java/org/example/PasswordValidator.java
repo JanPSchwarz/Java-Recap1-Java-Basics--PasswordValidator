@@ -5,15 +5,34 @@ import java.util.*;
 
 public final class PasswordValidator {
 
+    private static final String ALLOWED_SPECIAL_CHARS = "!@#$%^&*()-_+=?.,;:";
+
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Password Validator program\n");
         System.out.println("Please enter your password: ");
+
         String password = scanner.nextLine();
 
         boolean isValid = isValid(password);
 
-        System.out.println("\nYour password is: " + (isValid ? "Valid" : "Invalid"));
+        while (!isValid) {
+
+            System.out.println("\nYour password is invalid!");
+
+            System.out.println("\nPassword report:\n");
+
+            reportValidation(password);
+
+            System.out.print("Please enter another password: ");
+
+            password = scanner.nextLine();
+
+            isValid = isValid(password);
+        }
+
+        System.out.println("Password valid!");
 
         scanner.close();
     }
@@ -87,18 +106,35 @@ public final class PasswordValidator {
     }
 
     public static boolean isValid(String password) {
-        String allowedSpecialChars = "!@#$%^&*()-_+=?.,;:";
         boolean hasMinLength = hasMinLength(password);
         boolean hasNoWhiteSpace = hasNoWhiteSpace(password);
         boolean containsDigit = containsDigit(password);
         boolean containsUpperAndLower = containsUpperAndLower(password);
-        boolean containsSpecialChar = containsSpecialCharacter(password, allowedSpecialChars);
+        boolean containsSpecialChar = containsSpecialCharacter(password, ALLOWED_SPECIAL_CHARS);
         boolean isNotCommonPassword = !isCommonPassword(password);
 
-        boolean isValid = hasMinLength && hasNoWhiteSpace && containsDigit && containsUpperAndLower && containsSpecialChar && isNotCommonPassword;
+        return hasMinLength && hasNoWhiteSpace && containsDigit && containsUpperAndLower && containsSpecialChar && isNotCommonPassword;
+    }
 
-        return isValid;
+    public static void reportValidation(String password) {
+        StringBuilder report = new StringBuilder();
 
+        // Header
+        report.append(String.format("%-40s %s%n", "Requirement", "Passed"));
+        report.append("-".repeat(50)).append("\n");
 
+        addTableRow(report, "Minimum length (8 characters)", hasMinLength(password));
+        addTableRow(report, "No whitespace", hasNoWhiteSpace(password));
+        addTableRow(report, "At least 1 digit", containsDigit(password));
+        addTableRow(report, "Upper and lowercase letters", containsUpperAndLower(password));
+        addTableRow(report, "At least 1 special character", containsSpecialCharacter(password, ALLOWED_SPECIAL_CHARS));
+        addTableRow(report, "Not a common password", !isCommonPassword(password));
+
+        System.out.println(report);
+    }
+
+    private static void addTableRow(StringBuilder report, String requirement, boolean passed) {
+        String status = passed ? "✓ Yes" : "✗ No";
+        report.append(String.format("%-40s %s%n", requirement, status));
     }
 }
