@@ -9,9 +9,6 @@ import java.util.Set;
 public final class PasswordValidator {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-
-        isCommonPassword("test");
     }
 
     // Methods
@@ -68,8 +65,15 @@ public final class PasswordValidator {
     }
 
     // Bonus method
-    public static boolean containsSpecialCharacter(String password) {
-        return true;
+    public static boolean containsSpecialCharacter(String password, String allowedSpecialChars) {
+        char[] chars = password.toCharArray();
+        for (char c : chars) {
+            if (allowedSpecialChars.indexOf(c) != -1) {
+                return true;
+            }
+        }
+        return false;
+
     }
 
     public static boolean isValid(String password) {
