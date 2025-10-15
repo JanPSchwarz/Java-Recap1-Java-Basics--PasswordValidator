@@ -92,7 +92,24 @@ class PasswordValidatorTest {
     }
 
     @Test
-    void containsUpperAndLower() {
+    void containsUpperAndLower_shouldReturnTrue_forPasswordWithUpperAndLower() {
+        String upperAndLowerCase = "Password1";
+        boolean actual = PasswordValidator.containsUpperAndLower(upperAndLowerCase);
+        assertTrue(actual);
+    }
+
+    @Test
+    void containsUpperAndLower_shouldReturnFalse_forPasswordWithOnlyUpper() {
+        String onlyUpperCase = "PASSWORD";
+        boolean actual = PasswordValidator.containsUpperAndLower(onlyUpperCase);
+        assertFalse(actual);
+    }
+
+    @Test
+    void containsUpperAndLower_shouldReturnFalse_forPasswordWithOnlyLower() {
+        String onlyLowerCase = "password1";
+        boolean actual = PasswordValidator.containsUpperAndLower(onlyLowerCase);
+        assertFalse(actual);
     }
 
     @Test
