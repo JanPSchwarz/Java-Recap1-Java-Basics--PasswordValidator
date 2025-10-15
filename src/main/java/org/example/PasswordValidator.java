@@ -66,12 +66,22 @@ public final class PasswordValidator {
         return commonPasswords.contains(normalizedPassword);
     }
 
-    // Bonus methods
+    // Bonus method
     public static boolean containsSpecialCharacter(String password) {
         return true;
     }
 
     public static boolean isValid(String password) {
-        return true;
+        boolean hasMinLength = hasMinLength(password);
+        boolean hasNoWhiteSpace = hasNoWhiteSpace(password);
+        boolean containsDigit = containsDigit(password);
+        boolean containsUpperAndLower = containsUpperAndLower(password);
+        boolean isNotCommonPassword = !isCommonPassword(password);
+
+        boolean isValid = hasMinLength && hasNoWhiteSpace && containsDigit && containsUpperAndLower && isNotCommonPassword;
+
+        return isValid;
+
+
     }
 }

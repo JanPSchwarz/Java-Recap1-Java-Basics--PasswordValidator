@@ -153,35 +153,35 @@ class PasswordValidatorTest {
 
     @Test
     void isValid_shouldReturnTrue_forPasswordLengthGood() {
-        String password = "password";
+        String password = "Passwor1";
         boolean actual = PasswordValidator.isValid(password);
         assertTrue(actual);
     }
 
     @Test
     void isValid_shouldReturnFalse_forPasswordWithWhiteSpace() {
-        String password = "passwor  ";
+        String password = "Pa55word  ";
         boolean actual = PasswordValidator.isValid(password);
         assertFalse(actual);
     }
 
     @Test
     void isValid_shouldReturnTrue_forPasswordWithoutWhiteSpace() {
-        String password = "password";
+        String password = "Pa55word";
         boolean actual = PasswordValidator.isValid(password);
         assertTrue(actual);
     }
 
     @Test
     void isValid_shouldReturnFalse_forPasswordWithoutDigit() {
-        String password = "password";
+        String password = "Password";
         boolean actual = PasswordValidator.isValid(password);
         assertFalse(actual);
     }
 
     @Test
     void isValid_shouldReturnTrue_forPasswordWithDigit() {
-        String password = "password1";
+        String password = "WordPass1";
         boolean actual = PasswordValidator.isValid(password);
         assertTrue(actual);
     }
