@@ -55,7 +55,7 @@ public final class PasswordValidator {
     }
 
     public static boolean isCommonPassword(String password) {
-        String[] commonPasswordsArray = {"aa345678", "12345678", "password", "password1"};
+        String[] commonPasswordsArray = {"aa345678", "12345678", "password", "password1", "password1!"};
 
         final Set<String> commonPasswords = new HashSet<>(Arrays.asList(commonPasswordsArray));
 
@@ -66,6 +66,9 @@ public final class PasswordValidator {
 
     // Bonus method
     public static boolean containsSpecialCharacter(String password, String allowedSpecialChars) {
+        if (allowedSpecialChars == null || allowedSpecialChars.isEmpty()) {
+            return true;
+        }
         char[] chars = password.toCharArray();
         for (char c : chars) {
             if (allowedSpecialChars.indexOf(c) != -1) {
@@ -77,13 +80,15 @@ public final class PasswordValidator {
     }
 
     public static boolean isValid(String password) {
+        String allowedSpecialChars = "!@#$%^&*()-_+=?.,;:";
         boolean hasMinLength = hasMinLength(password);
         boolean hasNoWhiteSpace = hasNoWhiteSpace(password);
         boolean containsDigit = containsDigit(password);
         boolean containsUpperAndLower = containsUpperAndLower(password);
+        boolean containsSpecialChar = containsSpecialCharacter(password, allowedSpecialChars);
         boolean isNotCommonPassword = !isCommonPassword(password);
 
-        boolean isValid = hasMinLength && hasNoWhiteSpace && containsDigit && containsUpperAndLower && isNotCommonPassword;
+        boolean isValid = hasMinLength && hasNoWhiteSpace && containsDigit && containsUpperAndLower && containsSpecialChar && isNotCommonPassword;
 
         return isValid;
 

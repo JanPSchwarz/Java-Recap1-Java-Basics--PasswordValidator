@@ -146,62 +146,69 @@ class PasswordValidatorTest {
 
     @Test
     void isValid_shouldReturnFalse_forPasswordTooShort() {
-        String password = "passwor";
+        String password = "Pa5swo!";
         boolean actual = PasswordValidator.isValid(password);
         assertFalse(actual);
     }
 
     @Test
     void isValid_shouldReturnTrue_forPasswordLengthGood() {
-        String password = "Passwor1";
+        String password = "Passwo!1";
         boolean actual = PasswordValidator.isValid(password);
         assertTrue(actual);
     }
 
     @Test
     void isValid_shouldReturnFalse_forPasswordWithWhiteSpace() {
-        String password = "Pa55word  ";
+        String password = "!Pa55word  ";
         boolean actual = PasswordValidator.isValid(password);
         assertFalse(actual);
     }
 
     @Test
     void isValid_shouldReturnTrue_forPasswordWithoutWhiteSpace() {
-        String password = "Pa55word";
+        String password = "Pa55word!";
         boolean actual = PasswordValidator.isValid(password);
         assertTrue(actual);
     }
 
     @Test
     void isValid_shouldReturnFalse_forPasswordWithoutDigit() {
-        String password = "Password";
+        String password = "Password!";
         boolean actual = PasswordValidator.isValid(password);
         assertFalse(actual);
     }
 
     @Test
     void isValid_shouldReturnTrue_forPasswordWithDigit() {
-        String password = "WordPass1";
+        String password = "WordPass!1";
         boolean actual = PasswordValidator.isValid(password);
         assertTrue(actual);
     }
 
     @Test
     void isValid_shouldReturnFalse_forPasswordOnlyLowerCase() {
-        String password = "password12";
+        String password = "password12!";
         boolean actual = PasswordValidator.isValid(password);
         assertFalse(actual);
     }
 
     @Test
     void isValid_shouldReturnTrue_forPasswordWithUpperAndLowerCase() {
-        String password = "PassworD12";
+        String password = "PassworD12!";
         boolean actual = PasswordValidator.isValid(password);
         assertTrue(actual);
     }
 
     @Test
-    void isValid_shouldReturnFalse_forCommonPassword() {
+    void isValid_shouldReturnFalse_forCommonPasswordWithSpecialCharacter() {
+        String password = "Password1!";
+        boolean actual = PasswordValidator.isValid(password);
+        assertFalse(actual);
+    }
+
+    @Test
+    void isValid_shouldReturnFalse_forCommonPasswordWithoutSpecialCharacter() {
         String password = "Password1";
         boolean actual = PasswordValidator.isValid(password);
         assertFalse(actual);
@@ -248,6 +255,16 @@ class PasswordValidatorTest {
     void containsSpecialCharacter_shouldReturnTrue_forPasswordWithManySpecialChars() {
         String password = "Password?!()";
         String allowedSpecialChar = "!@#$%^&*()-_+=?.,;:";
+
+        boolean actual = PasswordValidator.containsSpecialCharacter(password, allowedSpecialChar);
+
+        assertTrue(actual);
+    }
+
+    @Test
+    void containsSpecialCharacter_shouldReturnTrue_forEmptyAllowedSpecialChars() {
+        String password = "Password?!()";
+        String allowedSpecialChar = "";
 
         boolean actual = PasswordValidator.containsSpecialCharacter(password, allowedSpecialChar);
 
